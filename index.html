@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WordPress Custom Page Generator - Multi Page Kit</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar / Control Panel -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="logo">WP</div>
+                <div>
+                    <h1>WP Custom Page</h1>
+                    <p>Generator Halaman Mandiri</p>
+                </div>
+            </div>
+
+            <div class="section-title">1. Pilih Jenis Halaman</div>
+            <div class="control-group">
+                <select id="page-type" class="page-type-select">
+                    <option value="sdm" selected>👥 Profil Struktur & SDM</option>
+                    <option value="kontak">📞 Kontak Hubungi Kami</option>
+                    <option value="galeri">🖼️ Galeri Foto Instansi</option>
+                    <option value="prestasi">🏆 Penghargaan & Prestasi</option>
+                    <option value="sop">📋 Bagan Alur & SOP Kerja</option>
+                </select>
+            </div>
+
+            <div class="section-title">2. Pilih Opsi Tampilan</div>
+            <div class="template-selector" id="style-selector-container">
+                <!-- Dynamically filled with template styles based on page type -->
+            </div>
+
+            <div class="section-title">3. Kustomisasi Tema</div>
+            <div class="settings-group">
+                <div class="control-group">
+                    <label for="primary-color">Warna Utama (Aksen)</label>
+                    <div class="color-picker-wrapper">
+                        <input type="color" id="primary-color" value="#3b82f6">
+                        <input type="text" id="primary-color-text" value="#3b82f6" placeholder="#3b82f6">
+                    </div>
+                </div>
+
+                <div class="control-group" id="radius-control-group">
+                    <label for="card-radius">Kelengkungan Sudut (Radius)</label>
+                    <div class="range-wrapper">
+                        <input type="range" id="card-radius" min="0" max="24" value="12" step="2">
+                        <span id="card-radius-value">12px</span>
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label for="font-family">Font Tampilan</label>
+                    <select id="font-family">
+                        <option value="inherit">Font Bawaan WordPress</option>
+                        <option value="'Plus Jakarta Sans', sans-serif">Plus Jakarta Sans</option>
+                        <option value="'Outfit', sans-serif">Outfit</option>
+                        <option value="'Inter', sans-serif">Inter</option>
+                        <option value="'Roboto', sans-serif">Roboto</option>
+                    </select>
+                </div>
+
+                <div class="control-group" id="photo-style-group">
+                    <label for="photo-style">Bentuk Bingkai Foto/Sertifikat</label>
+                    <select id="photo-style">
+                        <option value="square">Kotak Presisi</option>
+                        <option value="rounded" selected>Kotak Tumpul (Rounded)</option>
+                        <option value="circle">Bulat (Lingkaran)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section-title">4. Informasi & Konten Halaman</div>
+            <div class="data-info-box">
+                <div class="info-icon">💡</div>
+                <div class="info-text" id="info-box-text">
+                    Data default telah disiapkan dengan standar profesional. Semua CSS dan JavaScript dibundel tanpa memerlukan plugin tambahan.
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <p>Tanpa Plugin • HTML & CSS Murni • SEO Friendly</p>
+            </div>
+        </aside>
+
+        <!-- Main Work Area -->
+        <main class="main-content">
+            <header class="app-header">
+                <h2 id="page-title-display">WordPress Custom HTML Page Builder</h2>
+                <div class="tabs-header">
+                    <button class="tab-trigger active" data-tab="preview">👁️ Pratinjau Tampilan (Preview)</button>
+                    <button class="tab-trigger" data-tab="code">💻 Kode Siap Paste (HTML/CSS/JS)</button>
+                </div>
+            </header>
+
+            <div class="tab-content-container">
+                <!-- Preview Tab -->
+                <div class="tab-content active" id="tab-preview">
+                    <div class="preview-toolbar">
+                        <span class="preview-badge">Preview Mode (Simulasi Halaman WordPress)</span>
+                        <div class="responsive-toggles">
+                            <button class="resp-btn active" data-width="100%">🖥️ Desktop</button>
+                            <button class="resp-btn" data-width="768px">📱 Tablet</button>
+                            <button class="resp-btn" data-width="375px">📱 Mobile</button>
+                        </div>
+                    </div>
+                    <div class="preview-wrapper">
+                        <iframe id="preview-iframe" title="Pratinjau Halaman WP"></iframe>
+                    </div>
+                </div>
+
+                <!-- Code Tab -->
+                <div class="tab-content" id="tab-code">
+                    <div class="code-toolbar">
+                        <span class="code-badge">Salin kode di bawah ini lalu tempel ke blok "Custom HTML" di WordPress</span>
+                        <button class="copy-btn" id="copy-code-btn">
+                            <span class="copy-icon">📋</span> Salin Kode
+                        </button>
+                    </div>
+                    <div class="code-container">
+                        <pre><code id="code-output">Generating code...</code></pre>
+                    </div>
+                    
+                    <div class="wordpress-guide">
+                        <h3>💡 Cara Memasang di WordPress (Tanpa Plugin):</h3>
+                        <ol>
+                            <li>Buka halaman edit WordPress (Gutenberg Editor atau Classic Editor).</li>
+                            <li>Jika menggunakan Gutenberg (Blok): Klik tombol <strong>+ (Tambah Blok)</strong>, cari dan pilih blok <strong>HTML Khusus (Custom HTML)</strong>.</li>
+                            <li>Jika menggunakan Classic Editor: Pindah dari mode visual ke mode <strong>Teks (HTML)</strong>.</li>
+                            <li>Tempel (Paste) kode yang disalin di atas ke dalam blok/area teks tersebut.</li>
+                            <li>Klik <strong>Simpan Draf</strong> atau <strong>Perbarui</strong>, lalu lihat halaman tersebut. Selesai!</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="app.js"></script>
+</body>
+</html>
